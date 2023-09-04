@@ -1,0 +1,66 @@
+anonymous_usage_statistics:
+  data_context_id: 00000000-0000-0000-0000-00000000e003
+  enabled: true
+checkpoint_store_name: checkpoint_store
+config_variables_file_path: uncommitted/config_variables.yml
+config_version: 3.0
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+    store_backend:
+      base_directory: uncommitted/data_docs/local_site/
+      class_name: TupleFilesystemStoreBackend
+datasources: {}
+evaluation_parameter_store_name: evaluation_parameter_store
+expectations_store_name: expectations_S3_store
+fluent_datasources:
+  s3_datasource:
+    type: pandas_s3
+    bucket: <S3_Bucket>
+include_rendered_content:
+  globally: false
+  expectation_suite: false
+  expectation_validation_result: false
+notebooks:
+plugins_directory: plugins/
+stores:
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      base_directory: checkpoints/
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+  evaluation_parameter_store:
+    class_name: EvaluationParameterStore
+  expectations_S3_store:
+    class_name: ExpectationsStore
+    store_backend:
+      bucket: S3_Bucket
+      class_name: TupleS3StoreBackend
+      prefix: gx_titanic
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      base_directory: expectations/
+      class_name: TupleFilesystemStoreBackend
+  profiler_store:
+    class_name: ProfilerStore
+    store_backend:
+      base_directory: profilers/
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+  validations_S3_store:
+    class_name: ValidationsStore
+    store_backend:
+      bucket: S3_Bucket
+      class_name: TupleS3StoreBackend
+      prefix: gx_titanic
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      base_directory: uncommitted/validations/
+      class_name: TupleFilesystemStoreBackend
+validations_store_name: validations_S3_store
